@@ -1,54 +1,484 @@
-body{
-    background-color:black;
-    color: rgb(62, 60, 60);
+
+:root {
+    --primary-color: #111318;
+    --secondary-color: #20242d;
+    --contrast-color: #f4f1ea;
+    --triadic-color: #DD0022;
+    --extra-color: #ffa200;
+
+    --space-small: 0.75rem;
+    --space-medium: 1.25rem;
+    --space-large: 2rem;
+    --content-width: 75rem;
 }
 
-p{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color:whitesmoke;
+/* 
+   2. Reset and base styles
+ */
+
+* {
+    box-sizing: border-box;
 }
 
-h2{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    letter-spacing: 2px;
-    -webkit-text-stroke: 1px white;
+html {
+    scroll-behavior: smooth;
 }
 
-table {
-    border: 4px solid white;
-    border-collapse: collapse;
-    margin: 20px;
+body {
+    margin: 0;
+    background-color: var(--primary-color);
+    color: var(--contrast-color);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.35rem;
+}
+
+h3 {
+    font-size: 1.05rem;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+/* 
+   3. Header and navigation
+*/
+
+.header {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: var(--space-medium);
+    padding: var(--space-large) var(--space-medium);
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-small);
+}
+
+.nav-link {
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--extra-color);
+    border-radius: 0.35rem;
+    color: var(--contrast-color);
+    text-decoration: none;
+    transition: background-color 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.nav-link[aria-current="page"] {
+    background-color: var(--triadic-color);
+    border-color: var(--triadic-color);
+}
+
+.logo {
+    color: var(--extra-color);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+}
+
+/* 
+   4. Main content
+ */
+
+.main {
+    width: min(100% - 2rem, var(--content-width));
+    margin-inline: auto;
+    padding-block: var(--space-large);
+}
+
+.intro {
+    margin-bottom: var(--space-large);
+    padding: var(--space-large);
+    border: 1px solid var(--extra-color);
+    border-radius: 0.4rem;
+    background-color: var(--secondary-color);
     text-align: center;
-    border-radius: 20px;
+}
+
+.intro h1 {
+    margin-bottom: var(--space-small);
+    color: var(--extra-color);
+}
+
+.intro-text {
+    max-width: 48rem;
+    margin-inline: auto;
+}
+
+/* 
+   5. Image and feature list
+ */
+
+.showcase {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-large);
+    margin-bottom: var(--space-large);
+}
+
+.intro-image {
+    margin: 0;
+}
+
+.intro-image img {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border: 1px solid var(--extra-color);
+    border-radius: 0.35rem;
+    background-color: var(--secondary-color);
+}
+
+.intro-image figcaption {
+    margin-top: var(--space-small);
+    color: var(--extra-color);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.feature-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-medium);
+    padding: var(--space-medium);
+    border: 1px solid var(--secondary-color);
+    border-radius: 0.35rem;
+}
+
+.feature {
+    padding: var(--space-medium);
+    border-left: 3px solid var(--triadic-color);
+    background-color: var(--secondary-color);
+}
+
+.feature h2 {
+    margin-bottom: var(--space-small);
+    color: var(--extra-color);
+}
+
+/* 
+   6. History grid and sidebar
+ */
+
+.history-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-medium);
+    margin-bottom: var(--space-large);
+}
+
+.history-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border: 1px solid var(--extra-color);
+    border-radius: 0.35rem;
     overflow: hidden;
-    max-width: 700px;
-    max-height: 700px;
 }
 
-th, td {
-    border: 1px solid black;
-    padding: 10px;
+.history-card {
+    min-width: 0;
+    padding: var(--space-medium);
+    border-right: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+    overflow-wrap: anywhere;
+}
+
+.history-card h3 {
+    color: var(--extra-color);
+}
+
+.history-card p {
+    font-size: 0.9rem;
+}
+
+.sidebar {
+    padding: var(--space-medium);
+    border: 1px solid var(--extra-color);
+    border-radius: 0.35rem;
+    background-color: var(--secondary-color);
+}
+
+.sidebar h2 {
+    color: var(--extra-color);
+}
+
+.sidebar-list {
+    display: grid;
+    gap: var(--space-medium);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-small);
+}
+
+.sidebar-dot {
+    flex: 0 0 0.65rem;
+    width: 0.65rem;
+    height: 0.65rem;
+    margin-top: 0.45rem;
+    border-radius: 50%;
+    background-color: var(--triadic-color);
+}
+
+/* 
+   7. Closing text and footer
+ */
+
+.closing-text {
+    padding: var(--space-large) var(--space-medium);
+    border-top: 1px solid var(--extra-color);
     text-align: center;
 }
 
-#important {
-    background-color: rgba(200, 25, 20, 0.999);
-    font-weight: bold;
+.closing-text h2 {
+    color: var(--extra-color);
 }
 
-tr > :first-child {
-    background-color: rgba(240, 80, 40, 0.999);
+.footer {
+    padding: var(--space-large) var(--space-medium);
+    border-top: 1px solid var(--secondary-color);
+    background-color: var(--secondary-color);
+    text-align: center;
 }
 
-th{
-    color:azure;
+.footer-text {
+    font-size: 0.85rem;
 }
 
-tr{
-    background-color:black;
-    border-radius: 4px;
+/* 
+   8. Hover and keyboard focus
+*/
+
+.nav-link:hover {
+    background-color: var(--extra-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
-h1{
-    color:azure;
+.nav-link:focus-visible,
+.logo:focus-visible {
+    outline: 3px solid var(--extra-color);
+    outline-offset: 4px;
+}
+
+.history-card:hover {
+    background-color: var(--secondary-color);
+}
+
+/* 
+   9. Desktop layout
+ */
+
+@media (min-width: 1024px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding-inline: 0;
+    }
+
+    .main {
+        padding-block: 3rem;
+    }
+
+    .intro {
+        padding: 2.5rem;
+    }
+
+    .showcase {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        align-items: start;
+        gap: var(--space-large);
+    }
+
+    .intro-image img {
+        aspect-ratio: 4 / 5;
+    }
+
+    .feature-list {
+        grid-template-columns: 1fr;
+    }
+
+    .history-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(13rem, 0.8fr);
+        align-items: stretch;
+    }
+
+    .history-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .history-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 7rem;
+        padding: var(--space-medium);
+    }
+}
+
+
+/* 
+   ABOUT PAGE
+*/
+
+/* About introduction */
+
+.about-text {
+    margin-bottom: var(--space-large);
+    padding: var(--space-medium);
+    border: 1px solid var(--extra-color);
+    border-radius: 0.35rem;
+    text-align: center;
+}
+
+.about-text h1 {
+    margin-bottom: var(--space-medium);
+    color: var(--extra-color);
+    font-size: 1.6rem;
+}
+
+.about-text p + p {
+    margin-top: var(--space-medium);
+}
+
+/* Gallery and sidebar */
+
+.about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-medium);
+    margin-bottom: var(--space-medium);
+}
+
+.about-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    overflow: hidden;
+    border: 1px solid var(--extra-color);
+    border-radius: 0.35rem;
+}
+
+.about-image {
+    min-width: 0;
+    margin: 0;
+    border-right: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.about-image img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background-color: var(--secondary-color);
+}
+
+.about-image figcaption {
+    padding: 0.5rem;
+    color: var(--extra-color);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.about-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: var(--space-medium);
+    padding: var(--space-medium);
+}
+
+.about-fact {
+    padding-block: var(--space-small);
+}
+
+.about-fact h2 {
+    margin-bottom: 0.5rem;
+    color: var(--extra-color);
+    font-size: 1rem;
+}
+
+.about-fact p {
+    font-size: 0.9rem;
+}
+
+/* Large bottom image */
+
+.wide-image {
+    width: 100%;
+    margin-top: var(--space-medium);
+    overflow: hidden;
+    border: 1px solid var(--extra-color);
+    border-radius: 0.35rem;
+    background-color: var(--secondary-color);
+}
+
+.wide-image img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+/* Desktop layout */
+
+@media (min-width: 1024px) {
+    .about-layout {
+        grid-template-columns: minmax(0, 3fr) minmax(9rem, 0.8fr);
+        align-items: stretch;
+        gap: var(--space-medium);
+    }
+
+    .about-sidebar {
+        padding-inline: var(--space-small);
+    }
+
+    .about-text {
+        padding: var(--space-large);
+    }
 }
