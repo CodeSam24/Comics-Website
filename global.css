@@ -1,19 +1,24 @@
 
+/* ========================================
+   1. Global variables
+======================================== */
+
 :root {
     --primary-color: #111318;
     --secondary-color: #20242d;
     --contrast-color: #f4f1ea;
-    --triadic-color: #DD0022;
-    --extra-color: #ffa200;
+    --triadic-color: #a83d35;
+    --extra-color: #d6ad65;
+
     --space-small: 0.75rem;
     --space-medium: 1.25rem;
     --space-large: 2rem;
     --content-width: 75rem;
 }
 
-/* 
+/* ========================================
    2. Reset and base styles
- */
+======================================== */
 
 * {
     box-sizing: border-box;
@@ -25,6 +30,9 @@ html {
 
 body {
     margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     background-color: var(--primary-color);
     color: var(--contrast-color);
     font-family: Arial, Helvetica, sans-serif;
@@ -71,16 +79,20 @@ p {
     margin-bottom: 0;
 }
 
-/* 
+/* ========================================
    3. Header and navigation
-*/
+======================================== */
 
 .header {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     gap: var(--space-medium);
-    padding: var(--space-large) var(--space-medium);
+    width: min(100% - 2rem, var(--content-width));
+    margin-inline: auto;
+    padding: var(--space-large) 0;
     border-bottom: 1px solid var(--secondary-color);
 }
 
@@ -97,9 +109,10 @@ p {
     border-radius: 0.35rem;
     color: var(--contrast-color);
     text-decoration: none;
-    transition: background-color 0.2s ease,
-                color 0.2s ease,
-                transform 0.2s ease;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .nav-link[aria-current="page"] {
@@ -115,11 +128,12 @@ p {
     text-decoration: none;
 }
 
-/* 
+/* ========================================
    4. Main content
- */
+======================================== */
 
 .main {
+    flex: 1;
     width: min(100% - 2rem, var(--content-width));
     margin-inline: auto;
     padding-block: var(--space-large);
@@ -144,9 +158,9 @@ p {
     margin-inline: auto;
 }
 
-/* 
+/* ========================================
    5. Image and feature list
- */
+======================================== */
 
 .showcase {
     display: flex;
@@ -194,9 +208,9 @@ p {
     color: var(--extra-color);
 }
 
-/* 
+/* ========================================
    6. History grid and sidebar
- */
+======================================== */
 
 .history-layout {
     display: flex;
@@ -263,9 +277,9 @@ p {
     background-color: var(--triadic-color);
 }
 
-/* 
+/* ========================================
    7. Closing text and footer
- */
+======================================== */
 
 .closing-text {
     padding: var(--space-large) var(--space-medium);
@@ -288,9 +302,9 @@ p {
     font-size: 0.85rem;
 }
 
-/* 
+/* ========================================
    8. Hover and keyboard focus
-*/
+======================================== */
 
 .nav-link:hover {
     background-color: var(--extra-color);
@@ -308,9 +322,9 @@ p {
     background-color: var(--secondary-color);
 }
 
-/* 
+/* ========================================
    9. Desktop layout
- */
+======================================== */
 
 @media (min-width: 1024px) {
     .header {
@@ -361,12 +375,9 @@ p {
     }
 }
 
-
-/* 
-   ABOUT PAGE
-*/
-
-/* About introduction */
+/* ========================================
+   10. About page
+======================================== */
 
 .about-text {
     margin-bottom: var(--space-large);
@@ -385,8 +396,6 @@ p {
 .about-text p + p {
     margin-top: var(--space-medium);
 }
-
-/* Gallery and sidebar */
 
 .about-layout {
     display: grid;
@@ -447,8 +456,6 @@ p {
     font-size: 0.9rem;
 }
 
-/* Large bottom image */
-
 .wide-image {
     width: 100%;
     margin-top: var(--space-medium);
@@ -464,7 +471,115 @@ p {
     object-fit: cover;
 }
 
-/* Desktop layout */
+/* ========================================
+   11. Lore page
+======================================== */
+
+.lore-content {
+    width: 100%;
+    padding: 20px 8px;
+}
+
+.lore-item {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.lore-title {
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.lore-text {
+    padding: 12px;
+    border: 1px solid #777;
+    border-radius: 3px;
+    line-height: 1.8;
+}
+
+/* ========================================
+   12. Photos page
+======================================== */
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: var(--space-small);
+    overflow: hidden;
+    border: 1px solid var(--extra-color);
+    border-radius: 0.35rem;
+}
+
+.photo-item {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    margin: 0;
+    padding: var(--space-small);
+    border-right: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+    background-color: transparent;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.photo-item:nth-child(3n) {
+    border-right: none;
+}
+
+.photo-item:nth-last-child(-n + 3) {
+    border-bottom: none;
+}
+
+.photo-item:hover {
+    background-color: var(--secondary-color);
+}
+
+.photo-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: 0.2rem;
+    transition: border-color 0.25s ease;
+}
+
+.photo-item:hover .photo-image {
+    border-color: var(--extra-color);
+}
+
+.photo-caption {
+    margin: 0;
+    padding: var(--space-small) 0.15rem 0.25rem;
+    color: var(--extra-color);
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.35;
+    text-align: center;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.photo-description {
+    margin-top: var(--space-medium);
+    padding: var(--space-large) var(--space-medium);
+    border-top: 1px solid var(--extra-color);
+    color: var(--contrast-color);
+    text-align: center;
+    line-height: 1.7;
+}
+
+.photo-description p {
+    max-width: 52rem;
+    margin: 0 auto;
+}
+
+/* ========================================
+   13. Responsive layouts
+======================================== */
 
 @media (min-width: 1024px) {
     .about-layout {
@@ -479,5 +594,62 @@ p {
 
     .about-text {
         padding: var(--space-large);
+    }
+}
+
+@media (max-width: 700px) {
+    .navigation {
+        justify-content: flex-end;
+    }
+
+    .photo-item {
+        padding: 0.5rem;
+    }
+
+    .photo-caption {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .logo {
+        font-size: 1.15rem;
+    }
+
+    .navigation {
+        gap: 0.4rem;
+    }
+
+    .nav-link {
+        padding: 0.45rem 0.55rem;
+        font-size: 0.8rem;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .photo-item:nth-child(3n) {
+        border-right: 1px solid var(--secondary-color);
+    }
+
+    .photo-item:nth-child(2n) {
+        border-right: none;
+    }
+
+    .photo-item:nth-last-child(-n + 3) {
+        border-bottom: 1px solid var(--secondary-color);
+    }
+
+    .photo-item:nth-last-child(-n + 2) {
+        border-bottom: none;
+    }
+
+    .photo-caption {
+        font-size: 0.75rem;
+    }
+
+    .photo-description {
+        padding: var(--space-medium) 0.5rem;
     }
 }
